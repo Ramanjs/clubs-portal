@@ -35,7 +35,7 @@ const verify = async (accessToken: string, refreshToken: string, profile: Profil
 }
 
 const voidVerify = (fn: any) => (accessToken: string, refreshToken: string, profile: Profile, done: VerifyCallback): void => {
-  Promise.resolve(fn(accessToken, refreshToken, profile, done)).catch((err) => { done(err, undefined) })
+  Promise.resolve(fn(accessToken, refreshToken, profile, done)).catch((err) => { done(err, false) })
 }
 
 const googleStrategy = new Strategy(

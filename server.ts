@@ -7,6 +7,7 @@ import errorHandler from './middleware/error'
 import googleStrategy from './auth/google'
 import connect from './database/mongodbConnection'
 import morgan from 'morgan'
+import jwtStrategy from './auth/jwt'
 
 dotenv.config()
 
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
+passport.use('jwt', jwtStrategy)
 passport.use('google', googleStrategy)
 app.use(logger)
 
