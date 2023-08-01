@@ -25,7 +25,7 @@ const getAuthenticationToken = (user: any): {
     id: user._id,
     handle: user.handle
   }, String(authConfig.accessTokenSecret), {
-    expiresIn: '5m'
+    expiresIn: '30d'
   })
 
   const refreshToken = jwt.sign({
@@ -55,7 +55,7 @@ const getAccessToken = (refreshToken: string, req: Request, res: Response): stri
       id,
       handle
     }, String(authConfig.accessTokenSecret), {
-      expiresIn: '5m'
+      expiresIn: '30d'
     })
 
     return accessToken

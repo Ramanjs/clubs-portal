@@ -1,12 +1,10 @@
 import { type Request, type Response } from 'express'
 import { getAuthenticationToken } from '../auth/token'
+import authConfig from '../config/auth'
 
-const oauthCallback = async (req: Request, res: Response): Promise<Response> => {
-  const { accessToken, refreshToken } = getAuthenticationToken(req.user)
-  return res.status(200).json({
-    accessToken,
-    refreshToken
-  })
+const oauthCallback = async (req: Request, res: Response): Promise<void> => {
+  const { accessToken } = getAuthenticationToken(req.user)
+  res.redirect(String(authConfig.frontendBaseUrl) + '/login/success?accessToken=' + accessToken)
 }
 
 export { oauthCallback }
