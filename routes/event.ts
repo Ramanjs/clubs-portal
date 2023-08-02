@@ -14,14 +14,14 @@ router.post(
 )
 
 router.post(
-  '/requests/:handle',
+  '/requests/:id',
   requiresAuth,
   catchAsync(accessMiddleware),
   catchAsync(approveEventRequest)
 )
 
 router.delete(
-  '/requests/:handle',
+  '/requests/:id',
   requiresAuth,
   catchAsync(accessMiddleware),
   catchAsync(rejectEventRequest)

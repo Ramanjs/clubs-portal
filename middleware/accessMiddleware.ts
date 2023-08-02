@@ -5,7 +5,8 @@ import accessLevel from '../config/user'
 const accessMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { id: handle } = req.params
 
-  const isCoordinator = await Club.findOne({ coordinator: handle })
+  // @ts-expect-error idk
+  const isCoordinator = await Club.findOne({ coordinator: req.user._id })
 
   // @ts-expect-error idk
   if (req.user.isClubsCoordinator === true) {

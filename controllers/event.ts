@@ -28,6 +28,7 @@ const approveEventRequest = async (req: Request, res: Response): Promise<Respons
   // @ts-expect-error tdk
   if (req.user.accessLevel <= accessLevel.CLUBS_COORDINATOR) {
     const event = await Event.findOne({ handle }).lean()
+    console.log(event)
     // @ts-expect-error tdk
     event.status = 'APPROVED'
     // @ts-expect-error tdk
