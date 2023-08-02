@@ -14,7 +14,7 @@ const getAllEvents = async (req: Request, res: Response): Promise<Response> => {
 const getEventInfo = async (req: Request, res: Response): Promise<Response> => {
   const { id: handle } = req.params
 
-  const event = await Event.findOne({ handle }).lean()
+  const event = await Event.findOne({ handle }).populate('coordinator club').lean()
 
   return res.status(200).json(event)
 }
@@ -67,4 +67,18 @@ const rejectEventRequest = async (req: Request, res: Response): Promise<Response
   return res.status(200).json({})
 }
 
-export { getAllEvents, getEventInfo, createEventRequest, approveEventRequest, rejectEventRequest }
+const registerForEvent = async (req: Request, res: Response): Promise<Response> => {
+  const { id: handle } = req.params
+
+  const event = await Event.findOne({ handle }).lean()
+
+  // @ts-expect-error idk
+  event?.participants.push(req.user._id)
+
+  // @ts-expect-error idk
+  await Event.updateOne({ handle }, event)
+
+  return res.status(200).json({ success: true })
+}
+
+export { getAllEvents, getEventInfo, createEventRequest, approveEventRequest, rejectEventRequest, registerForEvent }

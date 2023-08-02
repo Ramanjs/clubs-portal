@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllEvents, approveEventRequest, createEventRequest, getEventInfo, rejectEventRequest } from '../controllers/event'
+import { getAllEvents, approveEventRequest, createEventRequest, getEventInfo, rejectEventRequest, registerForEvent } from '../controllers/event'
 import accessMiddleware from '../middleware/accessMiddleware'
 import requiresAuth from '../middleware/auth'
 import catchAsync from '../utils/catchAsync'
@@ -35,6 +35,12 @@ router.delete(
   requiresAuth,
   catchAsync(accessMiddleware),
   catchAsync(rejectEventRequest)
+)
+
+router.post(
+  '/:id/registrations',
+  requiresAuth,
+  catchAsync(registerForEvent)
 )
 
 export default router
