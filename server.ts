@@ -5,6 +5,7 @@ import passport from 'passport'
 import authRouter from './routes/auth'
 import clubRouter from './routes/club'
 import userRouter from './routes/user'
+import eventRouter from './routes/event'
 import errorHandler from './middleware/error'
 import googleStrategy from './auth/google'
 import connect from './database/mongodbConnection'
@@ -30,6 +31,7 @@ void connect()
 app.use('/auth', authRouter)
 app.use('/clubs', clubRouter)
 app.use('/users', userRouter)
+app.use('/events', eventRouter)
 app.use(errorHandler)
 
 app.get('/', (req, res) => {
