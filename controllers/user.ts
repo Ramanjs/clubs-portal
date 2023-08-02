@@ -17,6 +17,9 @@ const getUserInfo = async (req: Request, res: Response): Promise<Response> => {
     response.pendingRequests = await Event.find({ status: 'PENDING' })
   }
 
+  const registrations = await Event.find({ participants: user?._id }).select('name handle start end venue')
+  // @ts-expect-error idk
+  response.registrations = registrations
   return res.status(200).json(response)
 }
 
