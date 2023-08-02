@@ -7,10 +7,17 @@ const getUserInfo = async (req: Request, res: Response): Promise<Response> => {
   const user = await User.findOne({ handle: id }).lean()
 
   const events = await Event.find({ coordinator: user?._id }).lean()
-  // @ts-expect-error idk
-  user.requests = events
 
-  return res.status(200).json(user)
+  const response = user
+  // @ts-expect-error idk
+  response.requests = events
+
+  if (user?.isClubsCoordinator === true) {
+    // @ts-expect-error idk
+    response.pendingRequests = await Event.find({ status: 'PENDING' })
+  }
+
+  return res.status(200).json(response)
 }
 
 export { getUserInfo }
