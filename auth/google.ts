@@ -30,6 +30,7 @@ const verify = async (accessToken: string, refreshToken: string, profile: Profil
     password
   })
 
+  // @ts-expect-error err
   newUser = newUser.toObject()
   done(null, newUser)
 }

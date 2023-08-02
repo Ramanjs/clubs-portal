@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
 const clubSchema = new Schema({
+  handle: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String },
   coordinator: { type: mongoose.Types.ObjectId, ref: 'User' },
