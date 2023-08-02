@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose'
 const clubSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String },
-  coordinator: { type: mongoose.Types.ObjectId },
+  coordinator: { type: mongoose.Types.ObjectId, ref: 'User' },
   events: [
     {
       type: mongoose.Types.ObjectId,
