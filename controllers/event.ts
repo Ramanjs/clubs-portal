@@ -5,6 +5,20 @@ import User from '../models/user'
 import Club from '../models/club'
 import Event from '../models/event'
 
+const getAllEvents = async (req: Request, res: Response): Promise<Response> => {
+  const events = await Event.find({ status: 'APPROVED' })
+
+  return res.status(200).json(events)
+}
+
+const getEventInfo = async (req: Request, res: Response): Promise<Response> => {
+  const { id: handle } = req.params
+
+  const event = await Event.findOne({ handle }).lean()
+
+  return res.status(200).json(event)
+}
+
 const createEventRequest = async (req: Request, res: Response): Promise<Response> => {
   const data = req.body
   data.status = 'PENDING'
@@ -53,4 +67,4 @@ const rejectEventRequest = async (req: Request, res: Response): Promise<Response
   return res.status(200).json({})
 }
 
-export { createEventRequest, approveEventRequest, rejectEventRequest }
+export { getAllEvents, getEventInfo, createEventRequest, approveEventRequest, rejectEventRequest }
