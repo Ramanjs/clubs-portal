@@ -33,7 +33,7 @@ const createEventRequest = async (req: Request, res: Response): Promise<Response
 
   await Event.create(data)
 
-  return res.status(200).json({ success: true })
+  return res.status(200).json(data)
 }
 
 const approveEventRequest = async (req: Request, res: Response): Promise<Response> => {
@@ -47,9 +47,10 @@ const approveEventRequest = async (req: Request, res: Response): Promise<Respons
     event.status = 'APPROVED'
     // @ts-expect-error tdk
     await Event.updateOne({ handle }, event)
+    return res.status(200).json()
   }
 
-  return res.status(200).json({})
+  return res.status(403).json()
 }
 
 const rejectEventRequest = async (req: Request, res: Response): Promise<Response> => {
