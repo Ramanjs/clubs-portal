@@ -15,7 +15,6 @@ import jwtStrategy from './auth/jwt'
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT ?? 8080
 const logger = morgan('dev')
 
 app.use(express.json())
@@ -38,6 +37,4 @@ app.get('/', (req, res) => {
   res.send('Express + TypeScript Server')
 })
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`)
-})
+export default app
