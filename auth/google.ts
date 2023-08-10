@@ -23,16 +23,15 @@ const verify = async (accessToken: string, refreshToken: string, profile: Profil
   const handle = `${firstName}-${lastName}-${uuid}`
   const password = crypto.randomUUID().slice(0, 6)
 
-  let newUser = await User.create({
+  const newUser = await User.create({
     email: profile._json.email,
     name: `${firstName} ${lastName}`,
     handle,
     password
   })
 
-  // @ts-expect-error err
-  newUser = newUser.toObject()
-  done(null, newUser)
+  const newUserObject = newUser.toObject()
+  done(null, newUserObject)
 }
 
 const voidVerify = (fn: any) => (accessToken: string, refreshToken: string, profile: Profile, done: VerifyCallback): void => {

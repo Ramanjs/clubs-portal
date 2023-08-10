@@ -14,7 +14,7 @@ import jwtStrategy from './auth/jwt'
 
 dotenv.config()
 
-const app = express()
+export const app = express()
 const logger = morgan('dev')
 
 app.use(express.json())
@@ -36,5 +36,3 @@ app.use(errorHandler)
 app.get('/', (req, res) => {
   res.send('Express + TypeScript Server')
 })
-
-export default app

@@ -5,8 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/app.js",
-    "dev": "nodemon app.ts",
+    "start": "node dist/server.js",
+    "dev": "nodemon server.ts",
     "test": "jest"
   },
   "keywords": [],
@@ -21,7 +21,8 @@
     "morgan": "^1.10.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

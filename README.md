@@ -14,9 +14,11 @@ A: I relied on multiple sources of documentation. Firstly, I referred to the off
 
 Google Auth: 4 hrs 30 mins
 Clubs Portal API: 8 hrs
+Backend APIs: 8 hrs
 
 2. How many lines of code to implement a component?
 308
 400
+300
 
 3. Issue resolution: 30 mins, solved using stack overflow
