@@ -14,8 +14,8 @@ const clubSchema = new Schema({
   email: { type: String, required: true },
   members: [
     {
-      type: mongoose.Types.ObjectId,
-      ref: 'User'
+      role: String,
+      email: String
     }
   ],
   creationDate: { type: Date }
