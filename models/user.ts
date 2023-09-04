@@ -5,7 +5,8 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, require: true },
   handle: { type: String, required: true },
-  isClubsCoordinator: { type: Boolean, default: false }
+  isClubsCoordinator: { type: Boolean, default: false },
+  isAdmin: { type: Boolean, default: true }
 })
 
 const User = mongoose.model('User', userSchema)

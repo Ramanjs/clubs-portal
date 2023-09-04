@@ -1,4 +1,5 @@
 import { type Request, type Response } from 'express'
+import Club from '../models/club'
 import Event from '../models/event'
 import User from '../models/user'
 
@@ -18,6 +19,10 @@ const getUserInfo = async (req: Request, res: Response): Promise<Response> => {
   }
 
   const registrations = await Event.find({ participants: user?._id }).select('name handle start end venue')
+
+  // @ts-expect-error idk
+  response.isCoordinator = (await Club.find({ coordinator: user?._id })) != null
+
   // @ts-expect-error idk
   response.registrations = registrations
   return res.status(200).json(response)
