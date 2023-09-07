@@ -18,7 +18,9 @@ const eventSchema = new Schema({
       ref: 'User'
     }
   ],
-  creationDate: { type: String }
+  creationDate: { type: String },
+  expectedParticipation: { type: Number },
+  requirements: { type: String }
 })
 
 const Event = mongoose.model('Event', eventSchema)
