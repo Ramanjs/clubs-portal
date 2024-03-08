@@ -11,7 +11,7 @@ const accessMiddleware = async (req: Request, res: Response, next: NextFunction)
     // @ts-expect-error idk
     isCoordinator = await Club.findOne({ coordinator: req.user._id })
     // @ts-expect-error idk
-    if (req.user.isClubsCoordinator === true) {
+    if (req.user.isClubsCoordinator === true || req.user.isAdmin === true) {
       // @ts-expect-error idk
       req.user.accessLevel = accessLevel.CLUBS_COORDINATOR
     } else if (isCoordinator != null) {

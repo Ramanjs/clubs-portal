@@ -18,6 +18,7 @@ const clubSchema = new Schema({
       email: String
     }
   ],
+  status: { type: String },
   creationDate: { type: Date }
 })
 

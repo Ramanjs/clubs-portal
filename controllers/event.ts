@@ -47,7 +47,7 @@ const approveEventRequest = async (req: Request, res: Response): Promise<Respons
     event.status = 'APPROVED'
     // @ts-expect-error tdk
     await Event.updateOne({ handle }, event)
-    return res.status(200).json()
+    return res.status(200).json({})
   }
 
   return res.status(403).json()
